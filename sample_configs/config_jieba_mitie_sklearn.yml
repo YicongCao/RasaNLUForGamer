@@ -2,7 +2,7 @@ language: "zh"
 
 pipeline:
 - name: "nlp_mitie"
-  model: "data/total_word_feature_extractor_zh.dat"
+  model: "data/total_word_feature_extractor_game.dat"
 - name: "tokenizer_jieba"
 - name: "ner_mitie"
 - name: "ner_synonyms"
