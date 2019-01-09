@@ -17,6 +17,14 @@ RUN pip install -r alt_requirements/requirements_bare.txt
 
 RUN pip install -e .
 
+RUN pip install git+https://github.com/mit-nlp/MITIE.git \
+    && pip install jieba \
+    && pip install numpy scipy scikit-learn
+
+RUN python -m rasa_nlu.convert --data_file ./data/examples/rasa/demo-rasa_zh_game.md --out_file ./data/examples/rasa/demo-rasa_zh_game.json --format json \
+    && python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.yml --data data/examples/rasa/demo-rasa_zh_game.json --path models \
+    && python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.yml --path models
+
 VOLUME ["/app/projects", "/app/logs", "/app/data"]
 
 EXPOSE 5000
