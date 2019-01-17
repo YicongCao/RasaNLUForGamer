@@ -1,153 +1,53 @@
+## GameBot NLU
 
+基于 Rasa NLU 的代码，进行了少量修改，后端采用 scikit-learn（意图分类）和 MITIE（实体识别），内置了游戏向的标注文本。
 
-# Rasa NLU for Chinese, a fork from RasaHQ/rasa_nlu.
+这个工程只包含 NLU 服务，不含可视化的部分。
 
-## Please refer to newest instructions at [official Rasa NLU document](https://nlu.rasa.com/)
+![使用该NLU的Demo](https://ws3.sinaimg.cn/large/006tNc79gy1fz9m009ll8j30ef0bizm5.jpg)
 
-## [中文Blog](http://www.crownpku.com/2017/07/27/%E7%94%A8Rasa_NLU%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AD%E6%96%87NLU%E7%B3%BB%E7%BB%9F.html)
+### 食用方法
 
-![](http://www.crownpku.com/images/201707/5.jpg)
-![](http://www.crownpku.com/images/201707/4.jpg)
+```bash
+# 构建镜像
+docker build -t rasagame:v1 -f docker/Dockerfile_game .
 
-
-
-### Files you should have:
-
-* data/total_word_feature_extractor_zh.dat
-
-Trained from Chinese corpus by MITIE wordrep tools (takes 2-3 days for training)
-
-For training, please build the [MITIE Wordrep Tool](https://github.com/mit-nlp/MITIE/tree/master/tools/wordrep). Note that Chinese corpus should be tokenized first before feeding into the tool for training. Close-domain corpus that best matches user case works best.
-
-A trained model from Chinese Wikipedia Dump and Baidu Baike can be downloaded from [中文Blog](http://www.crownpku.com/2017/07/27/%E7%94%A8Rasa_NLU%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AD%E6%96%87NLU%E7%B3%BB%E7%BB%9F.html).
-
-
-* data/examples/rasa/demo-rasa_zh.json
-
-Should add as much examples as possible.
-
-### Usage:
-
-1. Clone this project, and run
-```
-python setup.py install
+# 启动镜像
+docker run -it --rm --name game-nlu -p 5005:5000 rasagame:v1 python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.yml --path models
 ```
 
-2. Modify configuration. 
+### 效果样例
 
-   Currently for Chinese we have two pipelines:
-
-   Use MITIE+Jieba (sample_configs/config_jieba_mitie.yml):
-```yaml
-language: "zh"
-
-pipeline:
-- name: "nlp_mitie"
-  model: "data/total_word_feature_extractor_zh.dat"
-- name: "tokenizer_jieba"
-- name: "ner_mitie"
-- name: "ner_synonyms"
-- name: "intent_entity_featurizer_regex"
-- name: "intent_classifier_mitie"
-```
-
-   RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.yml):
-```yaml
-language: "zh"
-
-pipeline:
-- name: "nlp_mitie"
-  model: "data/total_word_feature_extractor_zh.dat"
-- name: "tokenizer_jieba"
-- name: "ner_mitie"
-- name: "ner_synonyms"
-- name: "intent_entity_featurizer_regex"
-- name: "intent_featurizer_mitie"
-- name: "intent_classifier_sklearn"
-```
-
-3. (Optional) Use Jieba User Defined Dictionary or Switch Jieba Default Dictionoary:
-
-   You can put in **file path** or **directory path** as the "user_dicts" value. (sample_configs/config_jieba_mitie_sklearn_plus_dict_path.yml)
-
-```yaml
-language: "zh"
-
-pipeline:
-- name: "nlp_mitie"
-  model: "data/total_word_feature_extractor_zh.dat"
-- name: "tokenizer_jieba"
-  default_dict: "./default_dict.big"
-  user_dicts: "./jieba_userdict"
-#  user_dicts: "./jieba_userdict/jieba_userdict.txt"
-- name: "ner_mitie"
-- name: "ner_synonyms"
-- name: "intent_entity_featurizer_regex"
-- name: "intent_featurizer_mitie"
-- name: "intent_classifier_sklearn"
-```
-
-4. Train model by running:
-
-   If you specify your project name in configure file, this will save your model at /models/your_project_name. 
-
-   Otherwise, your model will be saved at /models/default
-
-```
-python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.yml --data data/examples/rasa/demo-rasa_zh.json --path models
-```
-
-
-5. Run the rasa_nlu server:
-
-```
-python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.yml --path models
-```
-
-
-6. Open a new terminal and now you can curl results from the server, for example:
-
-```
-$ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？", "project": "rasa_nlu_test", "model": "model_20170921-170911"}' | python -mjson.tool
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   652    0   552  100   100    157     28  0:00:03  0:00:03 --:--:--   157
+```json
+# API for NLU
+Request: HTTP GET http://localhost:5005/parse?q=搜索任天堂出的射击游戏
+Response:
 {
-    "entities": [
-        {
-            "end": 3,
-            "entity": "disease",
-            "extractor": "ner_mitie",
-            "start": 1,
-            "value": "发烧"
-        }
-    ],
-    "intent": {
-        "confidence": 0.5397186422631861,
-        "name": "medical"
+  "intent": {
+    "name": "game_recommend",
+    "confidence": 0.4798265664356213
+  },
+  "entities": [
+    {
+      "entity": "company",
+      "value": "任天堂",
+      "start": 2,
+      "end": 5,
+      "confidence": null,
+      "extractor": "ner_mitie"
     },
-    "intent_ranking": [
-        {
-            "confidence": 0.5397186422631861,
-            "name": "medical"
-        },
-        {
-            "confidence": 0.16206323981749196,
-            "name": "restaurant_search"
-        },
-        {
-            "confidence": 0.1212448457737397,
-            "name": "affirm"
-        },
-        {
-            "confidence": 0.10333600028547868,
-            "name": "goodbye"
-        },
-        {
-            "confidence": 0.07363727186010374,
-            "name": "greet"
-        }
-    ],
-    "text": "我发烧了该吃什么药？"
+    {
+      "entity": "type",
+      "value": "射击",
+      "start": 7,
+      "end": 9,
+      "confidence": null,
+      "extractor": "ner_mitie"
+    }
+  ],
+  "text": "搜索任天堂出的射击游戏"
 }
 ```
+
+
+
