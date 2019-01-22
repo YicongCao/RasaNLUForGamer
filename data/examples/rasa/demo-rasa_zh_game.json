@@ -95,6 +95,10 @@
       },
       {
         "intent": "game_recommend",
+        "text": "搜索好玩的游戏"
+      },
+      {
+        "intent": "game_recommend",
         "entities": [
           {
             "start": 4,
@@ -175,6 +179,18 @@
         "intent": "game_recommend",
         "entities": [
           {
+            "start": 2,
+            "end": 5,
+            "value": "马里奥",
+            "entity": "name"
+          }
+        ],
+        "text": "搜索马里奥游戏"
+      },
+      {
+        "intent": "game_recommend",
+        "entities": [
+          {
             "start": 4,
             "end": 7,
             "value": "任天堂",
@@ -197,7 +213,71 @@
       },
       {
         "intent": "game_recommend",
-        "text": "最近有哪些好玩的游戏"
+        "entities": [
+          {
+            "start": 6,
+            "end": 8,
+            "value": "动作",
+            "entity": "type"
+          }
+        ],
+        "text": "有哪些好玩的动作类游戏"
+      },
+      {
+        "intent": "game_recommend",
+        "text": "新发行的游戏"
+      },
+      {
+        "intent": "game_recommend",
+        "entities": [
+          {
+            "start": 6,
+            "end": 9,
+            "value": "iOS",
+            "entity": "platform"
+          }
+        ],
+        "text": "有哪些好玩的iOS游戏"
+      },
+      {
+        "intent": "game_recommend",
+        "entities": [
+          {
+            "start": 6,
+            "end": 9,
+            "value": "7.5",
+            "entity": "score"
+          },
+          {
+            "start": 10,
+            "end": 17,
+            "value": "Android",
+            "entity": "platform"
+          }
+        ],
+        "text": "搜索评分高于7.5的Android版游戏"
+      },
+      {
+        "intent": "game_recommend",
+        "entities": [
+          {
+            "start": 2,
+            "end": 5,
+            "value": "9.5",
+            "entity": "score"
+          },
+          {
+            "start": 9,
+            "end": 13,
+            "value": "角色扮演",
+            "entity": "type"
+          }
+        ],
+        "text": "搜索9.5分以上的角色扮演游戏"
+      },
+      {
+        "intent": "game_recommend",
+        "text": "有哪些游戏比较好玩"
       },
       {
         "intent": "game_query_rating",
@@ -284,6 +364,72 @@
         "text": "微软的极限竞速媒体评分是多少"
       },
       {
+        "intent": "game_query_rating",
+        "entities": [
+          {
+            "start": 0,
+            "end": 5,
+            "value": "塞尔达传说",
+            "entity": "name"
+          }
+        ],
+        "text": "塞尔达传说怎么样"
+      },
+      {
+        "intent": "game_query_rating",
+        "entities": [
+          {
+            "start": 0,
+            "end": 2,
+            "value": "育碧",
+            "entity": "company"
+          },
+          {
+            "start": 3,
+            "end": 5,
+            "value": "尼尔",
+            "entity": "name"
+          }
+        ],
+        "text": "育碧的尼尔评价怎么样"
+      },
+      {
+        "intent": "game_query_rating",
+        "entities": [
+          {
+            "start": 2,
+            "end": 6,
+            "value": "实况足球",
+            "entity": "name"
+          }
+        ],
+        "text": "搜索实况足球的网友评价"
+      },
+      {
+        "intent": "game_query_rating",
+        "entities": [
+          {
+            "start": 3,
+            "end": 8,
+            "value": "战场女武神",
+            "entity": "name"
+          }
+        ],
+        "text": "看一下战场女武神的玩家评价"
+      },
+      {
+        "intent": "game_query_rating",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "极限竞速",
+            "entity": "name"
+          }
+        ],
+        "text": "极限竞速的玩家评价如何"
+      },
+      {
         "intent": "game_query_year",
         "entities": [
           {
@@ -324,6 +470,30 @@
         "entities": [
           {
             "start": 0,
+            "end": 5,
+            "value": "超级马里奥",
+            "entity": "name"
+          }
+        ],
+        "text": "超级马里奥是什么时候上市的"
+      },
+      {
+        "intent": "game_query_year",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "怪物猎人",
+            "entity": "name"
+          }
+        ],
+        "text": "怪物猎人是哪一年上市的"
+      },
+      {
+        "intent": "game_query_year",
+        "entities": [
+          {
+            "start": 0,
             "end": 3,
             "value": "任天堂",
             "entity": "company"
@@ -344,7 +514,7 @@
             "start": 8,
             "end": 12,
             "value": "死亡搁浅",
-            "entity": "game"
+            "entity": "name"
           }
         ],
         "text": "在有生之年能玩到死亡搁浅吗"
@@ -362,7 +532,7 @@
             "start": 8,
             "end": 12,
             "value": "英雄联盟",
-            "entity": "game"
+            "entity": "name"
           }
         ],
         "text": "腾讯是哪一年出的英雄联盟"
@@ -377,19 +547,43 @@
             "entity": "name"
           }
         ],
-        "text": "荒野大镖客是谁出的"
+        "text": "荒野大镖客是哪家公司出的"
       },
       {
         "intent": "game_query_company",
         "entities": [
           {
-            "start": 9,
-            "end": 13,
+            "start": 0,
+            "end": 4,
+            "value": "孤岛惊魂",
+            "entity": "name"
+          }
+        ],
+        "text": "孤岛惊魂这个游戏是哪家公司出的"
+      },
+      {
+        "intent": "game_query_company",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
             "value": "使命召唤",
             "entity": "name"
           }
         ],
-        "text": "哪个游戏公司制作了使命召唤"
+        "text": "使命召唤是谁出的游戏"
+      },
+      {
+        "intent": "game_query_company",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "使命召唤",
+            "entity": "name"
+          }
+        ],
+        "text": "使命召唤是谁家的游戏"
       },
       {
         "intent": "game_query_company",
@@ -414,84 +608,6 @@
           }
         ],
         "text": "极限竞速是哪个公司的游戏"
-      },
-      {
-        "intent": "game_query_review",
-        "entities": [
-          {
-            "start": 0,
-            "end": 5,
-            "value": "塞尔达传说",
-            "entity": "name"
-          }
-        ],
-        "text": "塞尔达传说评价怎么样"
-      },
-      {
-        "intent": "game_query_review",
-        "entities": [
-          {
-            "start": 0,
-            "end": 2,
-            "value": "育碧",
-            "entity": "company"
-          },
-          {
-            "start": 3,
-            "end": 5,
-            "value": "尼尔",
-            "entity": "name"
-          }
-        ],
-        "text": "育碧的尼尔评价怎么样"
-      },
-      {
-        "intent": "game_query_review",
-        "entities": [
-          {
-            "start": 2,
-            "end": 6,
-            "value": "实况足球",
-            "entity": "name"
-          }
-        ],
-        "text": "搜索实况足球的网友评价"
-      },
-      {
-        "intent": "game_query_review",
-        "entities": [
-          {
-            "start": 3,
-            "end": 8,
-            "value": "战场女武神",
-            "entity": "name"
-          }
-        ],
-        "text": "看一下战场女武神的玩家评价"
-      },
-      {
-        "intent": "game_query_review",
-        "entities": [
-          {
-            "start": 0,
-            "end": 4,
-            "value": "守望先锋",
-            "entity": "name"
-          }
-        ],
-        "text": "守望先锋这个游戏玩家怎么说"
-      },
-      {
-        "intent": "game_query_review",
-        "entities": [
-          {
-            "start": 0,
-            "end": 4,
-            "value": "极限竞速",
-            "entity": "name"
-          }
-        ],
-        "text": "极限竞速的玩家评价如何"
       },
       {
         "intent": "game_query_platform",
@@ -584,7 +700,7 @@
             "start": 0,
             "end": 5,
             "value": "塞尔达传说",
-            "entity": "game"
+            "entity": "name"
           },
           {
             "start": 6,
@@ -593,7 +709,43 @@
             "entity": "platform"
           }
         ],
-        "text": "塞尔达传说有PS4版本吗"
+        "text": "塞尔达传说在PS4上能玩吗"
+      },
+      {
+        "intent": "game_query_platform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "怪物猎人",
+            "entity": "name"
+          },
+          {
+            "start": 7,
+            "end": 13,
+            "value": "switch",
+            "entity": "platform"
+          }
+        ],
+        "text": "怪物猎人可以在switch上玩吗"
+      },
+      {
+        "intent": "game_query_platform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 5,
+            "value": "超级马里奥",
+            "entity": "name"
+          },
+          {
+            "start": 6,
+            "end": 8,
+            "value": "PC",
+            "entity": "platform"
+          }
+        ],
+        "text": "超级马里奥是PC游戏吗"
       }
     ],
     "regex_features": [],
@@ -650,6 +802,32 @@
           "怪猎世界",
           "怪物猎人世界",
           "MHW"
+        ]
+      },
+      {
+        "value": "马里奥",
+        "synonyms": [
+          "马里欧",
+          "马力欧",
+          "超级马里奥",
+          "超级马里欧",
+          "Mario"
+        ]
+      },
+      {
+        "value": "iOS",
+        "synonyms": [
+          "ios",
+          "IOS",
+          "手机",
+          "苹果"
+        ]
+      },
+      {
+        "value": "Android",
+        "synonyms": [
+          "android",
+          "安卓"
         ]
       }
     ]

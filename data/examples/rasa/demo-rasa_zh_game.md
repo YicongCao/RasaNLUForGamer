@@ -50,9 +50,10 @@
 - [侠盗猎车手](name)的发行时间是
 - [极品飞车](name)下一部什么时候发布
 - [超级马里奥](name)是什么时候上市的
+- [怪物猎人](name)是哪一年上市的
 - [任天堂](company)的[色彩喷射团](name)什么时候开卖
-- 在有生之年能玩到[死亡搁浅](game)吗
-- [腾讯](company)是哪一年出的[英雄联盟](game)
+- 在有生之年能玩到[死亡搁浅](name)吗
+- [腾讯](company)是哪一年出的[英雄联盟](name)
 
 ## intent:game_query_company
 - [荒野大镖客](name)是哪家公司出的
@@ -68,7 +69,9 @@
 - [怪物猎人](name)支持[PC](platform)吗
 - [荒野大镖客](name)有[PC](platform)版吗
 - [极限竞速](name)[PC](platform)能玩吗
-- [塞尔达传说](game)在[PS4](platform)上能玩吗
+- [塞尔达传说](name)在[PS4](platform)上能玩吗
+- [怪物猎人](name)可以在[switch](platform)上玩吗
+- [超级马里奥](name)是[PC](platform)游戏吗
 
 ## synonym:腾讯
 - 鹅厂
