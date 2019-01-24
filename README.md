@@ -1,6 +1,6 @@
 ## GameBot NLU
 
-兴趣爱好所使，开发了主机游戏相关的如下四个工程：
+以游戏库对话查询 bot 为中心，开发了主机游戏相关的如下四个工程：
 
 - VGTimeSpider
 - VGTimeBackend
