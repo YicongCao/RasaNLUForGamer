@@ -19,6 +19,19 @@ NLU 服务可以用来理解用户提问，游戏库查询后端包括提问中�
 
 ### 食用方法
 
+请注意，运行该项目需要导入预先使用 游戏新闻语料 训练好的 MITIE 的 word embedding 模型。
+
+要把 total_word_feature_extractor_game.dat 放到 `data` 目录下，然后再执行镜像构建的命令。
+
+这个模型，可以通过 `tools` 目录下的 wordrep 程序进行训练得到，该目录下已经包含了用 jieba 分好词的语料，和游戏库中导出的游戏名字典。执行如下命令即可得到 total_word_feature_extractor_game.dat 模型。
+
+```bash
+# 训练 word embedding 模型，大概耗时 15min
+./wordrep -e ./zh
+```
+
+模型超过 100MB，所以无法发布到 Git 上。如果无法运行 wordrep，可以手动拉取 MITIE 的源代码进行编译，我在 tools 目录下放的是 macOS 平台编译的 amd64 版本。或者可以联系我来获取这个模型文件。
+
 ```bash
 # 构建镜像
 docker build -t rasagame:v1 -f docker/Dockerfile_game .
