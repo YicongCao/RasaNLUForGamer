@@ -37,7 +37,7 @@ NLU 服务可以用来理解用户提问，游戏库查询后端包括提问中�
 docker build -t rasagame:v1 -f docker/Dockerfile_game .
 
 # 启动镜像
-docker run -it --rm --name game-nlu -p 5005:5000 rasagame:v1 python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.yml --path models
+docker run -it --rm --name game-nlu -p 5005:5000 rasagame:v1 
 ```
 
 ### 效果样例
